@@ -20,7 +20,7 @@
 </head>
 <body id="theBody" onload="generateFaces()">
   <h2>Matching Game</h2>
-  <p>Click on the extra smiling face on the left</p>
+  <p>Click on the extra smiling face on the left.</p>
   <div id="leftSide"></div>
   <div id="rightSide"></div>
 
@@ -28,6 +28,7 @@
     var numberOfFaces = 5;
     var theLeftSide = document.getElementById("leftSide");
     var i = 0;
+    var theRightSide = document.getElementById("rightSide");
 
     function generateFaces(){
       while(i < numberOfFaces){
@@ -40,7 +41,11 @@
         image.style.left = randomPosition + "px";
         theLeftSide.appendChild(image);
         i ++;
-      }
+      } 
+
+    var leftSideImages = theLeftSide.cloneNode(true);
+    leftSideImages.removeChild(leftSideImages.lastChild);
+    document.getElementById("rightSide").appendChild(leftSideImages);
     };
   </script>
 </body>
