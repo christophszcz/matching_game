@@ -32,12 +32,14 @@
     function generateFaces(){
       while(i < numberOfFaces){
         var image = document.createElement("img");
-        var randomPosition = Math.random() * 401;
-        randomPosition = Math.floor(randomPosition);
+        var randomPositionA = Math.random() * 401;
+        randomPositionA = Math.floor(randomPositionA);
+        var randomPositionB = Math.random() * 401;
+        randomPositionB = Math.floor(randomPositionB);
 
         image.src =  "http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png";
-        image.style.top = randomPosition + "px";
-        image.style.left = randomPosition + "px";
+        image.style.top = randomPositionA + "px";
+        image.style.left = randomPositionB + "px";
         theLeftSide.appendChild(image);
         i ++;
       }
