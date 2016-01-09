@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Matching Game: Part 3</title>
+  <title>Matching Game: Part 4</title>
   <style>
     img {
       position: absolute;
@@ -29,6 +29,7 @@
     var theLeftSide = document.getElementById("leftSide");
     var i = 0;
     var theRightSide = document.getElementById("rightSide");
+    var theBody = document.getElementsByTagName("body")[0];
 
     function generateFaces(){
       while(i < numberOfFaces){
@@ -40,13 +41,32 @@
         image.style.top = randomPosition + "px";
         image.style.left = randomPosition + "px";
         theLeftSide.appendChild(image);
-        i ++;
-      } 
+        i++;
+      }
 
-    var leftSideImages = theLeftSide.cloneNode(true);
-    leftSideImages.removeChild(leftSideImages.lastChild);
-    document.getElementById("rightSide").appendChild(leftSideImages);
+      var leftSideImages = theLeftSide.cloneNode(true);
+      leftSideImages.removeChild(leftSideImages.lastChild);
+      document.getElementById("rightSide").appendChild(leftSideImages);
+
+      theLeftSide.lastChild.onclick = function nextLevel(event) {
+        event.stopPropagation();
+        while (theLeftSide.firstChild) {
+          theLeftSide.removeChild(theLeftSide.firstChild);
+        }
+        while (theRightSide.firstChild) {
+          theRightSide.removeChild(theRightSide.firstChild);
+        }
+        numberOfFaces += 5;
+        generateFaces();
+      };
     };
+
+    theBody.onclick = function gameOver() {
+      alert("Game Over! You have failed...");
+      theBody.onclick = null;
+      theLeftSide.lastChild.onclick = null;
+    };
+
   </script>
 </body>
 </html>
